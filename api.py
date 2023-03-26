@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import psycopg2
 
 # Database connection parameters
@@ -9,6 +10,7 @@ DB_HOST = "your_database_host"
 DB_PORT = "your_database_port"
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/api/metal-data/metals', methods=['GET'])
 def get_metals():
